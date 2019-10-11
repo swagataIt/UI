@@ -1,0 +1,155 @@
+<div class="myClass" id="home">
+    <div class=" container-fluid" style="padding: 0px;" id="cf1">
+    <div class="container-fluid" style="height:11%;width: 100%;">
+        
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top" id="top">
+            <div class="container-fluid">
+                <a class="navbar-brand" [routerLink]="['/index']" id="icon">U Learn.com</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+               <!-- <div class="dropdown">
+                    <button class="btn dropdown" type="button" data-toggle="modal"
+                        data-target="#myModal">Signup</button>
+                </div>-->
+            </div>
+        </nav>
+    </div>
+    <div class="container-fluid" style="height:89%;width: 100%;">
+        <div id="searchTrainings">
+            <div style="width: 50%;margin-left: auto;margin-right: auto;margin-top: 5%;">
+                <form [formGroup]="Search" (submit)="onSubmit(Search)">
+                    <div class="row">
+                        <div class="col md-9">
+                            <select formControlName="technology" class="rounded dropdown form-control ">
+                                <option value="" disabled>Select technology</option>
+                                <option value="{{items.name}}" *ngFor="let items of skillData">{{items.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3" style="text-align: center;">
+                            <button class="btn" style="width: 100%;"><span class="glyphicon glyphicon-search"></span>
+                                Search </button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div style="width: 80%;margin-left: auto;margin-right: auto;">
+                <h3 class="text-center text-capitalize p-4" style="color: black;">Search Results</h3>
+                <table class="table table-bordered table-striped" style="color: black;">
+                    <tbody id="myTable">
+                        <tr>
+                            <th></th>
+                            <th>Name of Mentor</th>
+                            <th>Expertise</th>
+                            <th>Year of Experience</th>
+                        </tr>
+                        <tr *ngFor="let items of Trainerdetails">
+                            <td><img src="assets/images/client.jpg" width="60px" height="60px"
+                                    style="margin-top:3px;margin-left: 5px;"></td>
+                            <td>{{items.firstName}} {{items.lastName}}</td>
+                            <td>{{items.training}}</td>
+                            <td>{{items.yearOfExperience}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="myModal" class="modal">
+    <div class="container-fluid " style="background-color: white;width: 50%;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">&times;</button>
+                </div>
+                <h3 style="padding: 20px;text-align: center;padding-bottom: 50px;">User Sign Up</h3>
+
+                <form [formGroup]="UserRegister" autocomplete="off" (submit)="onSubmit4(UserRegister)">
+                    <div class="form-row">
+                        <div class="form-group col required">
+                            <label>First Name</label>
+                            <input class="form-control" formControlName="firstName">
+                            <small class="text-danger"
+                                *ngIf="UserRegister.get('firstName').touched && UserRegister.get('firstName').errors?.required">This
+                                field is mandatory</small>
+                            <small class="text-danger"
+                                *ngIf="UserRegister.get('firstName').touched && UserRegister.get('firstName').errors?.pattern">Name
+                                cannot have special characters or digits</small>
+                        </div>
+                        <div class="form-group col required">
+                            <label>Last Name</label>
+                            <input class="form-control" formControlName="lastName">
+                            <small class="text-danger"
+                                *ngIf="UserRegister.get('lastName').touched && UserRegister.get('lastName').errors?.required">This
+                                field is mandatory</small>
+                            <small class="text-danger"
+                                *ngIf="UserRegister.get('lastName').touched && UserRegister.get('lastName').errors?.pattern">Name
+                                cannot have special characters or digits</small>
+                        </div>
+                    </div>
+                    <div class="form-group required">
+                        <label>UserName</label>
+                        <input class="form-control" formControlName="userName">
+                        <small class="text-danger"
+                            *ngIf="UserRegister.get('userName').touched && UserRegister.get('userName').errors?.required">This
+                            field is mandatory</small>
+                        <small class="text-danger"
+                            *ngIf="UserRegister.get('userName').touched && UserRegister.get('userName').errors?.pattern">Name
+                            cannot have special characters or digits</small>
+                    </div>
+                    <div class="form-group required">
+                        <label>Email</label>
+                        <input class="form-control" formControlName="email">
+                        <small class="text-danger"
+                            *ngIf="UserRegister.get('email').touched && UserRegister.get('email').errors?.required">This
+                            field is mandatory</small>
+                        <small class="text-danger"
+                            *ngIf="UserRegister.get('email').touched && UserRegister.get('email').errors?.pattern">Invalid
+                            Email Address</small>
+                    </div>
+                    <div class="form-group required">
+                        <label>Phone Number</label>
+                        <input class="form-control" formControlName="contactNumber">
+                        <small class="text-danger"
+                            *ngIf="UserRegister.get('contactNumber').touched && UserRegister.get('contactNumber').errors?.required">This
+                            field is mandatory</small>
+                        <small class="text-danger"
+                            *ngIf="UserRegister.get('contactNumber').touched && UserRegister.get('contactNumber').errors?.pattern">Invalid
+                            Phone Number</small>
+                    </div>
+                    <div class="form-group required">
+                        <label>Enter Password</label>
+                        <input class="form-control" formControlName="password">
+                        <small class="text-danger"
+                            *ngIf="UserRegister.get('password').touched && UserRegister.get('password').errors?.required">This
+                            field is mandatory</small>
+                        <small class="text-danger"
+                            *ngIf="UserRegister.get('password').touched && UserRegister.get('password').errors?.minlength">Minimun
+                            8 characters required</small>
+                    </div>
+                    <div class="form-group required">
+                        <label>Confirm Password</label>
+                        <input class="form-control" formControlName="confirmPassword">
+                        <small class="text-danger"
+                            *ngIf="UserRegister.get('confirmPassword').touched && UserRegister.get('confirmPassword').errors?.required">This
+                            field is mandatory</small>
+                        <small class="text-danger"
+                            *ngIf="UserRegister.get('confirmPassword').touched && UserRegister.get('confirmPassword').errors?.mustMatch">Confirm
+                            Password does not match</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <button class="btn btn-lg btn-block login" [disabled]="!UserRegister.valid">Sign Up</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>

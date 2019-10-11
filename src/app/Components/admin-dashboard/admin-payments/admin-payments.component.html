@@ -1,0 +1,64 @@
+<div id="payment">
+    <div>
+        <div class="container p-2">
+
+            <div class="py-4 text-center">
+                <h2 style="color: black;">Admin Payments</h2>
+
+            </div>
+
+        </div>
+        <div class="container p-3">
+            <div class="modal-body">
+                <table class="table table-striped table-bordered" style="color:black;">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Training Id</th>
+                            <th>Course</th>
+                            <th>Mentor Name</th>
+                            <th>Mentor Id</th>
+                            <th>Course Fees</th>
+                            <th>Commission</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let items of PaymentData ;let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{items.skillName}}</td>
+                            <td>{{items.mentorName}}</td>
+                            <td>{{items.trainingId}}</td>
+                            <td>{{items.mentorId}}</td>
+                            <td>{{items.amount}}</td>
+                            <td>{{items.commision}}</td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target="#myModal" (click)="commision(items.id)">Update Commission</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content" *ngIf="model">
+          <form>
+          <div class="modal-header">
+            <h4 class="modal-title">Update Progress</h4>
+          </div>
+          <div class="modal-body" style="text-align: left">
+            <input type="text" [(ngModel)]="model.commision" name="commision" class="form-control rounded">
+          </div>
+          <div class="modal-footer">
+            <button class="btn d-inline" (click)="commissionEdit(model.id)">Save</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

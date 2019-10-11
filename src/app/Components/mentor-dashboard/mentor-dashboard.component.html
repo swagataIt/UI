@@ -1,0 +1,45 @@
+<div class=" container-fluid" style="padding: 0px;">
+    <div class="container-fluid" style="height:11%;width: 100%;background-color: #DD2337;">
+        <nav class="navbar navbar-expand-lg navbar-light sticky-top" id="top">
+            <div class="container-fluid" >
+                <a class="navbar-brand" [routerLink]="['/index']" id="icon">U Learn.com</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">	       
+                        <li class="nav-item" id="about-link" >
+                            <a class="nav-link" [routerLink]="['notification']" style="text-align: center; width: 150px;"><i class="fa fa-bell"> </i> Notification</a>
+                        </li>  
+                        <div class="dropdown">
+                            <button class="dropbtn" style="margin-right: 50px;"><i class="fa fa-align-justify" title="Align Justify"></i>  More</button>
+                            <div class="dropdown-content">
+                                <a [routerLink]="['current-trainings']" >Current Training</a>
+                                <a [routerLink]="['completed-trainings']" >Completed Training</a>
+                                <a [routerLink]="['profile']">Profile</a>
+                                <a [routerLink]="['payments']">Payments</a>
+                                <a (click)="logout()">Logout</a>
+                            </div>	  
+                        </div>
+                    </ul>
+                </div>
+            </div>      
+        </nav>
+    </div> 
+    <div class="container-fluid" style="height:89%;width: 100%;background-color: white;">
+        <router-outlet></router-outlet>
+    </div>
+  </div>
+
+  <div id="notifications" class="modal">
+    <form class="modal-content animate" >
+      <div class="imgcontainer">
+          <span onclick="document.getElementById('notifications').style.display='none'" class="close" title="Close">&times;</span>
+        </div>
+  
+      <div class="container">
+        <h4 style="margin-bottom: 25px;text-align: left;">Notifications</h4>  
+          <div style="clear:right;">No new notifications</div> 
+      </div>
+    </form>
+  </div>
